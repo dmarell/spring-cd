@@ -1,3 +1,4 @@
-Bygger pŒ gs-rest-service
+Bygger pï¿½ gs-rest-service
 Migrerad till gs-actuator-service
 Uppgraderat spring boot version till 1.2.0.M1
+Lagt pÃ¥ shutdown property, /shutdown
