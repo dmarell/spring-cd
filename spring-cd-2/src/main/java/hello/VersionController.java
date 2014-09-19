@@ -13,6 +13,6 @@ public class VersionController {
     @RequestMapping(value = "/version", method = RequestMethod.GET)
     @ResponseBody
     public String getVersion() {
-        return BuildInfo.getApplicationVersion();
+        return BuildInfo.getVersion();
     }
 }

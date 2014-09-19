@@ -18,7 +18,7 @@ public class Application {
         app.addListeners(new ApplicationListener<ApplicationStartedEvent>() {
             @Override
             public void onApplicationEvent(ApplicationStartedEvent event) {
-                log.info("Application version: " + BuildInfo.getApplicationVersion());
+                log.info("Version: " + BuildInfo.getVersion());
             }
         });
         app.run(args);
