@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class VersionController {
-    @RequestMapping(value = "/version", method = RequestMethod.GET)
+public class AppVersionController {
+    @RequestMapping(value = "/appversion", method = RequestMethod.GET)
     @ResponseBody
-    public String getVersion() {
-        return BuildInfo.getVersion();
+    public String getAppVersion() {
+        return BuildInfo.getAppVersion();
     }
 }

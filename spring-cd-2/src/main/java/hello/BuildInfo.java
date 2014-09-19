@@ -19,15 +19,15 @@ public final class BuildInfo {
     /**
      * Get application version.
      *
-     * @return version
+     * @return AppVersion
      */
-    public static String getVersion() {
+    public static String getAppVersion() {
         InputStream in = BuildInfo.class.getResourceAsStream("/BuildInfo.properties");
         if (in != null) {
             try {
                 Properties props = new Properties();
                 props.load(in);
-                return props.getProperty("version");
+                return props.getProperty("AppVersion");
             } catch (IOException e) {
                 return "Cannot read BuildInfo.properties";
             } finally {

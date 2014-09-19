@@ -64,23 +64,11 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
+                <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
-                    <webResources>
-                        <resource>
-                            <directory>${project.basedir}/src/main/versioninfo</directory>
-                            <targetPath>app/assets</targetPath>
-                            <filtering>true</filtering>
-                        </resource>
-                    </webResources>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
                     <archive>
                         <manifestEntries>
-                            <Folksam-Version>${project.version}-b${BUILD_NUMBER}</Folksam-Version>
-                            <Version-Tag>${VERSION_TAG}</Version-Tag>
-                            <Build-Tag>${BUILD_TAG}</Build-Tag>
-                            <Build-Number>${BUILD_NUMBER}</Build-Number>
-                            <Build-Id>${BUILD_ID}</Build-Id>
+                            <AppVersion>${project.version}-b${BUILD_NUMBER}</AppVersion>
                         </manifestEntries>
                     </archive>
                 </configuration>
