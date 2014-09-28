@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>se.caglabs</groupId>
-    <artifactId>spring-cd-1</artifactId>
+    <artifactId>spring-cd-3</artifactId>
     <version>1-SNAPSHOT</version>
 
     <parent>
@@ -12,6 +12,13 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.2.0.M1</version>
     </parent>
+
+    <distributionManagement>
+        <repository>
+            <id>localnexus</id>
+            <url>http://localhost:8081/nexus/content/repositories/releases</url>
+        </repository>
+    </distributionManagement>
 
     <dependencies>
         <dependency>
@@ -29,6 +36,22 @@
     </properties>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>BuildInfo.properties</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>BuildInfo.properties</exclude>
+                </excludes>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin> 
                 <artifactId>maven-compiler-plugin</artifactId> 
@@ -37,6 +60,18 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <AppVersion>${project.version}.${BUILD_NUMBER}</AppVersion>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>
