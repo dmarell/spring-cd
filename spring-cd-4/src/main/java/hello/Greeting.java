@@ -1,11 +1,6 @@
 package hello;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 public class Greeting {
-    @Autowired
-    Config config;
-
     private final long id;
     private final String content;
 

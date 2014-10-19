@@ -11,6 +11,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class GreetingController {
     @Autowired
     private Config config;
+
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping("/greeting")
