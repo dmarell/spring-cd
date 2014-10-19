@@ -12,12 +12,15 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
+import javax.servlet.ServletContextListener;
+
 @ComponentScan
 @EnableAutoConfiguration
 public class Application {
     private static Logger log = LoggerFactory.getLogger(Application.class);
 
-    @Autowired private Config config;
+    @Autowired
+    private Config config;
 
     @Bean
     public EmbeddedServletContainerFactory containerFactory() {
@@ -33,6 +36,11 @@ public class Application {
             }
         });
         app.run(args);
+    }
+
+    @Bean
+    public ServletContextListener loggerInitializer() {
+        return new LogbackLoggerInitializer();
     }
 }
 

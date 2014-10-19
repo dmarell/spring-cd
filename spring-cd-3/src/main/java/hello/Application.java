@@ -17,7 +17,8 @@ import org.springframework.context.annotation.ComponentScan;
 public class Application {
     private static Logger log = LoggerFactory.getLogger(Application.class);
 
-    @Autowired private Config config;
+    @Autowired
+    private Config config;
 
     @Bean
     public EmbeddedServletContainerFactory containerFactory() {

@@ -1,19 +1,32 @@
 package hello;
 
-public class Greeting {
-    private final long id;
-    private final String content;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
-    public Greeting(long id, String content) {
-        this.id = id;
-        this.content = content;
+@Entity
+public class Greeting extends AbstractEntity {
+    private String content;
+
+    @ManyToOne(optional = false)
+    private Author author;
+
+    public Greeting() {
     }
 
-    public long getId() {
-        return id;
+    public Greeting(String content, Author author) {
+        this.content = content;
+        this.author = author;
     }
 
     public String getContent() {
         return content;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 }
