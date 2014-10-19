@@ -35,11 +35,11 @@ public class GreetingController {
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping(value = "/greetings", method = RequestMethod.GET)
-    public Iterable<Greeting> getGreetings(@RequestParam(value = "name", required = false) String name) {
+    public Iterable<Greeting> getGreetings(@RequestParam(value = "authorName", required = false) String authorName) {
         logger.info(String.format("getGreetings: name=%s, backgroundColor=%s, counter=%d",
-                name, config.getBackgroundColor(), counter.incrementAndGet()));
-        if (name != null) {
-            Author author = authorRepository.findByName(name);
+                authorName, config.getBackgroundColor(), counter.incrementAndGet()));
+        if (authorName != null) {
+            Author author = authorRepository.findByName(authorName);
             if (author != null) {
                 return greetingRepository.findByAuthor(author);
             }
