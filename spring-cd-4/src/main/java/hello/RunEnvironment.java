@@ -30,7 +30,7 @@ public enum RunEnvironment {
 
     public static RunEnvironment resolve(String envString) {
         for (RunEnvironment e : RunEnvironment.values()) {
-            if (e.toString().toLowerCase().equals(envString)) {
+            if (e.toString().toLowerCase().equals(envString.toLowerCase())) {
                 return e;
             }
         }
