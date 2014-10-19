@@ -11,8 +11,11 @@ import ch.qos.logback.core.util.StatusPrinter;
 import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -22,11 +25,14 @@ import java.util.MissingResourceException;
 /**
  * Listener that configures the log context reading logback configuration from
  * a logback config file per environment:
- * LOCAL.logback.xml
- * PROD.logback.xml
+ * local.logback.xml
+ * prod.logback.xml
  * etc.
  */
+@Component
 public class LogbackLoggerInitializer implements ServletContextListener {
+    @Autowired
+    private Environment environment;
 
     private static Logger logger = LoggerFactory.getLogger(LogbackLoggerInitializer.class.getName());
 
@@ -36,7 +42,7 @@ public class LogbackLoggerInitializer implements ServletContextListener {
         if (loggerFactory instanceof LoggerContext) {
             // SLF4J is bound to logback in the current environment
             LoggerContext context = (LoggerContext) loggerFactory;
-            String logbackConfigResourceKey = Environment.getCurrentEnvironment() + "." + ContextInitializer.AUTOCONFIG_FILE;
+            String logbackConfigResourceKey = RunEnvironment.getCurrentEnvironment(environment) + "." + ContextInitializer.AUTOCONFIG_FILE;
             try {
                 Resource logbackConfigResource = new DefaultResourceLoader().getResource(logbackConfigResourceKey);
                 JoranConfigurator configurator = new JoranConfigurator();

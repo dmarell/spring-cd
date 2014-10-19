@@ -1,0 +1,41 @@
+server:
+  port: 8080
+management:
+  port: 8081
+endpoints:
+  shutdown:
+    enabled: true
+---
+
+spring:
+  profiles: local
+hello:
+  backgroundcolor: yellow
+
+---
+
+spring:
+  profiles: autosmall
+hello:
+  backgroundcolor: red
+
+---
+
+spring:
+  profiles: autolarge
+hello:
+  backgroundcolor: red
+
+---
+
+spring:
+  profiles: man
+hello:
+  backgroundcolor: magenta
+
+---
+
+spring:
+  profiles: prod
+hello:
+  backgroundcolor: white

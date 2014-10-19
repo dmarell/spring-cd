@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
+import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
@@ -17,22 +18,15 @@ import javax.servlet.ServletContextListener;
 @ComponentScan
 @EnableAutoConfiguration
 public class Application {
-    private static Logger log = LoggerFactory.getLogger(Application.class);
-
-    @Autowired
-    private Config config;
-
-    @Bean
-    public EmbeddedServletContainerFactory containerFactory() {
-        return new TomcatEmbeddedServletContainerFactory(config.getHttpPort());
-    }
+    private static Logger logger = LoggerFactory.getLogger(Application.class);
 
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(Application.class);
-        app.addListeners(new ApplicationListener<ApplicationStartedEvent>() {
+        app.addListeners(new ApplicationListener<ApplicationEnvironmentPreparedEvent>() {
             @Override
-            public void onApplicationEvent(ApplicationStartedEvent event) {
-                log.info("AppVersion: " + BuildInfo.getAppVersion() + ",environment: " + Environment.getCurrentEnvironment());
+            public void onApplicationEvent(ApplicationEnvironmentPreparedEvent event) {
+                logger.info("AppVersion: " + BuildInfo.getAppVersion());
+                logger.info("RunEnvironment: " + RunEnvironment.getCurrentEnvironment(event.getEnvironment()));
             }
         });
         app.run(args);

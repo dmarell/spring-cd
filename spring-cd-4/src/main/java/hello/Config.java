@@ -3,45 +3,22 @@
  */
 package hello;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
 @Component
 public class Config {
-    private int httpPort;
     private String backgroundColor;
+
+    @Autowired
+    private Environment environment;
 
     @PostConstruct
     private void init() {
-        switch (Environment.getCurrentEnvironment()) {
-            case AUTOSMALL:
-                httpPort = 8080;
-                backgroundColor = "red";
-                break;
-            case AUTOLARGE:
-                httpPort = 8080;
-                backgroundColor = "red";
-                break;
-            case MAN:
-                httpPort = 8080;
-                backgroundColor = "magenta";
-                break;
-            case PROD:
-                httpPort = 8080;
-                backgroundColor = "white";
-                break;
-            case LOCAL:
-            default:
-                httpPort = 8080;
-                backgroundColor = "blue";
-                break;
-        }
-
-    }
-
-    public int getHttpPort() {
-        return httpPort;
+        backgroundColor = environment.getProperty("hello.backgroundcolor");
     }
 
     public String getBackgroundColor() {

@@ -11,14 +11,14 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan
 @EnableAutoConfiguration
 public class Application {
-    private static Logger log = LoggerFactory.getLogger(Application.class);
+    private static Logger logger = LoggerFactory.getLogger(Application.class);
 
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(Application.class);
         app.addListeners(new ApplicationListener<ApplicationStartedEvent>() {
             @Override
             public void onApplicationEvent(ApplicationStartedEvent event) {
-                log.info("AppVersion: " + BuildInfo.getAppVersion());
+                logger.info("AppVersion: " + BuildInfo.getAppVersion());
             }
         });
         app.run(args);

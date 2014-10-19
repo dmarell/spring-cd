@@ -330,6 +330,17 @@
         <root url="jar://$MAVEN_REPOSITORY$/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: net.logstash.logback:logstash-logback-encoder:3.2">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/logstash/logback/logstash-logback-encoder/3.2/logstash-logback-encoder-3.2.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/net/logstash/logback/logstash-logback-encoder/3.2/logstash-logback-encoder-3.2-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/logstash/logback/logstash-logback-encoder/3.2/logstash-logback-encoder-3.2-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Maven: org.apache.tomcat.embed:tomcat-embed-core:7.0.55">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/7.0.55/tomcat-embed-core-7.0.55.jar!/" />
