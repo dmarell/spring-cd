@@ -5,7 +5,7 @@
 
     <groupId>se.caglabs</groupId>
     <artifactId>spring-cd-2</artifactId>
-    <version>1-SNAPSHOT</version>
+    <version>1.0.31</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
