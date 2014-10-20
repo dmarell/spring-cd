@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @ManagedResource
@@ -32,16 +35,25 @@ public class GreetingController {
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping(value = "/greetings", method = RequestMethod.GET)
-    public Iterable<Greeting> getGreetings(@RequestParam(value = "authorName", required = false) String authorName) {
+    public List<Greeting> getGreetings(@RequestParam(value = "authorName", required = false) String authorName) {
         logger.info(String.format("getGreetings: name=%s, backgroundColor=%s, counter=%d",
                 authorName, config.getBackgroundColor(), counter.incrementAndGet()));
-        if (authorName != null) {
-            Author author = authorRepository.findByName(authorName);
-            if (author != null) {
-                return greetingRepository.findByAuthor(author);
-            }
+        if (authorName == null) {
+            return asListWhereIsJava8(greetingRepository.findAll());
         }
-        return greetingRepository.findAll();
+        Author author = authorRepository.findByName(authorName);
+        if (author != null) {
+            return greetingRepository.findByAuthor(author);
+        }
+        return Collections.emptyList();
+    }
+
+    private List<Greeting> asListWhereIsJava8(Iterable<Greeting> greetings) {
+        List<Greeting> result = new ArrayList<Greeting>();
+        for (Greeting g : greetings) {
+            result.add(g);
+        }
+        return result;
     }
 
     @RequestMapping(value = "/greetings/{id}", method = RequestMethod.GET)

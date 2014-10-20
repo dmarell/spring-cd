@@ -1,64 +1,59 @@
 /*
- * Created by Daniel Marell 14-10-19 23:42
+ * Created by Daniel Marell 14-10-20 20:10
  */
 package hello;
 
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.TestRestTemplate;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.web.client.RestTemplate;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import java.util.Arrays;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
-@WebAppConfiguration
-@IntegrationTest
 public class GreetingTest {
-    private static final String RESOURCE_URL = "http://localhost:8080";
+    @InjectMocks
+    GreetingController controller = new GreetingController();
 
-    @Autowired
-    GreetingRepository greetingRepository;
+    @Mock
+    Config config = mock(Config.class);
 
-    @Autowired
-    AuthorRepository authorRepository;
+    @Mock
+    AuthorRepository authorRepository = mock(AuthorRepository.class);
 
-    RestTemplate restTemplate = new TestRestTemplate();
+    @Mock
+    GreetingRepository greetingRepository = mock(GreetingRepository.class);
+
+    @Before
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
-    public void shouldStoreAndReadGreeting() throws Exception {
-        assertThat(getGreetings().length == 0, is(true));
+    public void testGetGreetings() throws Exception {
+        Author authorLisa = new Author("Lisa");
+        Author authorHomer = new Author("Homer");
+        Greeting lisaGreeting = new Greeting("Okay, time for truth or dare. You go first.", authorHomer);
+        Greeting homerGreeting1 = new Greeting("Ehh, truth. Ask me anything.", authorHomer);
+        Greeting homerGreeting2 = new Greeting("D'oh! All right, dare.", authorHomer);
 
-        ResponseEntity<Long> response = restTemplate.postForEntity(
-                RESOURCE_URL + "/greetings?authorName={authorName}&message={message}",
-                null, Long.class, "Homer", "Message 1");
-        long id = response.getBody();
-        assertThat(id > 0L, is(true));
-        Greeting[] result = getGreetings();
-        assertThat(result.length, is(1));
-        Greeting greeting = result[0];
-        assertThat(greeting.getAuthor().getName(), is("Homer"));
-        assertThat(greeting.getContent(), is("Message 1"));
-        greeting = findById(id);
-        assertThat(greeting.getContent(), is("Message 1"));
-    }
+        when(config.getBackgroundColor()).thenReturn("whatever");
 
-    Greeting findById(long id) {
-        ResponseEntity<Greeting> response = restTemplate.getForEntity(
-                RESOURCE_URL + "/greetings/{id}", Greeting.class, id);
-        return response.getBody();
-    }
+        when(authorRepository.findByName("Lisa")).thenReturn(authorLisa);
+        when(authorRepository.findByName("Homer")).thenReturn(authorHomer);
+        when(authorRepository.findByName("Bart")).thenReturn(null);
 
-    Greeting[] getGreetings() {
-        ResponseEntity<Greeting[]> response = restTemplate.getForEntity(
-                RESOURCE_URL + "/greetings", Greeting[].class);
-        return response.getBody();
+        when(greetingRepository.findByAuthor(authorLisa)).thenReturn(Arrays.asList(lisaGreeting));
+        when(greetingRepository.findByAuthor(authorHomer)).thenReturn(Arrays.asList(homerGreeting1, homerGreeting2));
+        when(greetingRepository.findAll()).thenReturn(Arrays.asList(lisaGreeting, homerGreeting1, homerGreeting2));
+
+        assertThat(controller.getGreetings("Lisa").size(), is(1));
+        assertThat(controller.getGreetings("Homer").size(), is(2));
+        assertThat(controller.getGreetings("Bart").size(), is(0));
     }
 }
