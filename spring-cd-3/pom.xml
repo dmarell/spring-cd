@@ -15,8 +15,9 @@
 
     <distributionManagement>
         <repository>
-            <id>localnexus</id>
-            <url>http://localhost:8081/nexus/content/repositories/releases</url>
+            <id>internal.repo</id>
+            <name>caglabs</name>
+            <url>http://54.197.216.66:8081</url>
         </repository>
     </distributionManagement>
 

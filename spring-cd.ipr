@@ -29,6 +29,7 @@
         <module name="spring-cd-4" />
         <module name="spring-cd-5" />
         <module name="spring-cd-6" />
+        <module name="spring-cd-7" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -39,6 +40,7 @@
       <module name="spring-cd-4" target="1.6" />
       <module name="spring-cd-5" target="1.6" />
       <module name="spring-cd-6" target="1.6" />
+      <module name="spring-cd-7" target="1.6" />
     </bytecodeTargetLevel>
   </component>
   <component name="CopyrightManager" default="" />
@@ -55,6 +57,7 @@
     <file url="file://$PROJECT_DIR$/spring-cd-4" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-cd-5" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-cd-6" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-cd-7" charset="UTF-8" />
   </component>
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
@@ -69,6 +72,7 @@
         <option value="$PROJECT_DIR$/spring-cd-4/pom.xml" />
         <option value="$PROJECT_DIR$/spring-cd-5/pom.xml" />
         <option value="$PROJECT_DIR$/spring-cd-6/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-cd-7/pom.xml" />
       </list>
     </option>
   </component>
@@ -204,9 +208,10 @@
       <module fileurl="file://$PROJECT_DIR$/spring-cd-4/spring-cd-4.iml" filepath="$PROJECT_DIR$/spring-cd-4/spring-cd-4.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-cd-5/spring-cd-5.iml" filepath="$PROJECT_DIR$/spring-cd-5/spring-cd-5.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-cd-6/spring-cd-6.iml" filepath="$PROJECT_DIR$/spring-cd-6/spring-cd-6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cd-7/spring-cd-7.iml" filepath="$PROJECT_DIR$/spring-cd-7/spring-cd-7.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.8u11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="VcsDirectoryMappings">
