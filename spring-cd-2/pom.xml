@@ -17,7 +17,7 @@
         <repository>
             <id>internal.repo</id>
             <name>caglabs</name>
-            <url>http://54.197.216.66:8081</url>
+            <url>http://54.197.216.66:8081/artifactory/libs-release-local</url>
         </repository>
     </distributionManagement>
 
