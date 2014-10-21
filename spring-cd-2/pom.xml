@@ -17,7 +17,7 @@
         <repository>
             <id>35721900b025</id>
             <name>35721900b025-releases</name>
-            <url>http://54.197.216.66:8081/artifactory/libs-release-local</url>
+            <url>http://caglabs.se:8081/artifactory/libs-release-local</url>
         </repository>
     </distributionManagement>
 
