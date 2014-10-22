@@ -8,9 +8,9 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * Provides information about the build:
+ * Provides build version.
  * <br>
- * version=${pom.version}
+ * version=${project.version}
  */
 public final class BuildInfo {
     private BuildInfo() {
