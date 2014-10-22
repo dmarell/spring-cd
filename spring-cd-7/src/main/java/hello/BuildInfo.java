@@ -37,6 +37,6 @@ public final class BuildInfo {
                 }
             }
         }
-        throw new IllegalArgumentException("Missing BuildInfo.properties");
+        throw new IllegalStateException("Missing BuildInfo.properties");
     }
 }
