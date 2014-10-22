@@ -23,7 +23,6 @@
 
     <logger name="hello" level="debug"/>
     <logger name="org.springframework" level="info"/>
-    <logger name="org.springframework.beans" level="info"/>
 
     <root level="warn">
         <appender-ref ref="file"/>

@@ -29,7 +29,6 @@
 
     <logger name="hello" level="trace"/>
     <logger name="org.springframework" level="info"/>
-    <logger name="org.springframework.beans" level="info"/>
 
     <root level="warn">
         <appender-ref ref="console"/>
