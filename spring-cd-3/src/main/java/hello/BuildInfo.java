@@ -28,7 +28,7 @@ public final class BuildInfo {
                 Properties props = new Properties();
                 props.load(in);
                 String version = props.getProperty("AppVersion");
-                if (version.contains("$")) {
+                if (version.contains("SNAPSHOT")) {
                     return "dev-build";
                 }
                 return version;
