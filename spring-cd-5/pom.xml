@@ -92,10 +92,6 @@
 
     <repositories>
         <repository>
-            <id>spring-milestone</id>
-            <url>http://repo.spring.io/libs-milestone-local</url>
-        </repository>
-        <repository>
             <id>spring-releases</id>
             <url>http://repo.spring.io/libs-release</url>
         </repository>
