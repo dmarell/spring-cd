@@ -69,7 +69,7 @@
                 <configuration>
                     <archive>
                         <manifestEntries>
-                            <AppVersion>${project.version}.${BUILD_NUMBER}</AppVersion>
+                            <AppVersion>${project.version}</AppVersion>
                         </manifestEntries>
                     </archive>
                 </configuration>
