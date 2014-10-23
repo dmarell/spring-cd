@@ -27,7 +27,11 @@ public final class BuildInfo {
             try {
                 Properties props = new Properties();
                 props.load(in);
-                return props.getProperty("AppVersion");
+                String version = props.getProperty("AppVersion");
+                if (version.contains("$")) {
+                    return "dev-build";
+                }
+                return version;
             } catch (IOException e) {
                 return "Cannot read BuildInfo.properties";
             } finally {
