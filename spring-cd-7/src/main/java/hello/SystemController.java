@@ -3,6 +3,7 @@
  */
 package hello;
 
+import org.flywaydb.core.Flyway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,9 @@ public class SystemController {
     @Autowired
     private Environment environment;
 
+    @Autowired
+    private Flyway flyway;
+
     @RequestMapping(value = "/appversion", method = RequestMethod.GET)
     public String getAppVersion() {
         return BuildInfo.getAppVersion();
@@ -22,5 +26,10 @@ public class SystemController {
     @RequestMapping(value = "/runenvironment", method = RequestMethod.GET)
     public String getRunEnvironment() {
         return RunEnvironment.getCurrentEnvironment(environment).toString();
+    }
+
+    @RequestMapping(value = "/dbversion", method = RequestMethod.GET)
+    public String getDbVersion() {
+        return flyway.info().current().getVersion().toString();
     }
 }

@@ -70,7 +70,6 @@ public class GreetingController {
         Author author = findOrCreateAuthor(authorName);
         Greeting greeting = new Greeting(message, author);
         entityManager.persist(greeting);
-        entityManager.flush();
         return greeting.getId();
     }
 

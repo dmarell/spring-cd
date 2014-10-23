@@ -29,6 +29,7 @@
 
     <logger name="hello" level="trace"/>
     <logger name="org.springframework" level="info"/>
+    <logger name="org.flywaydb" level="debug"/>
 
     <root level="warn">
         <appender-ref ref="console"/>

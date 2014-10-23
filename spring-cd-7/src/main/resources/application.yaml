@@ -9,9 +9,16 @@ endpoints:
 
 spring:
   profiles: local
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/spring-cd
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
 hello:
   backgroundcolor: yellow
-
 ---
 
 spring:
