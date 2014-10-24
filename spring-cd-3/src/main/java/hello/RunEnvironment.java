@@ -44,7 +44,7 @@ public enum RunEnvironment {
                 return e;
             }
         }
-        return LOCAL;
+        return null;
     }
 
     @Override

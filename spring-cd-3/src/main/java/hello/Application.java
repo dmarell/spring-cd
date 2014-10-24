@@ -15,6 +15,9 @@ public class Application {
 
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(Application.class);
+        if (System.getProperty("spring.profiles.active") == null) {
+            app.setAdditionalProfiles("local");
+        }
         app.addListeners(new ApplicationListener<ApplicationEnvironmentPreparedEvent>() {
             @Override
             public void onApplicationEvent(ApplicationEnvironmentPreparedEvent event) {
