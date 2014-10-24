@@ -54,7 +54,7 @@ public class LogbackLoggerInitializer implements ServletContextListener {
                 logger.error("Application is unable to load log configuration resource", e);
                 throw new MissingResourceException("Application is missing log configuration resource",
                         Resource.class.getName(), logbackConfigResourceKey);
-            } catch (JoranException je) {
+            } catch (JoranException ignore) {
                 // StatusPrinter will handle this
             }
             StatusPrinter.printInCaseOfErrorsOrWarnings(context);
