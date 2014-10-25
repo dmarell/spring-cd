@@ -38,7 +38,7 @@ public class GreetingTest {
     public void testGetGreetings() throws Exception {
         Author authorLisa = new Author("Lisa");
         Author authorHomer = new Author("Homer");
-        Greeting lisaGreeting = new Greeting("Okay, time for truth or dare. You go first.", authorHomer);
+        Greeting lisaGreeting = new Greeting("Okay, time for truth or dare. You go first.", authorLisa);
         Greeting homerGreeting1 = new Greeting("Ehh, truth. Ask me anything.", authorHomer);
         Greeting homerGreeting2 = new Greeting("D'oh! All right, dare.", authorHomer);
 
@@ -53,7 +53,9 @@ public class GreetingTest {
         when(greetingRepository.findAll()).thenReturn(Arrays.asList(lisaGreeting, homerGreeting1, homerGreeting2));
 
         assertThat(controller.getGreetings("Lisa").size(), is(1));
+        assertThat(controller.getGreetings("Lisa").get(0).getAuthor().getName(), is("Lisa"));
         assertThat(controller.getGreetings("Homer").size(), is(2));
+        assertThat(controller.getGreetings("Homer").get(0).getAuthor().getName(), is("Homer"));
         assertThat(controller.getGreetings("Bart").size(), is(0));
     }
 }
